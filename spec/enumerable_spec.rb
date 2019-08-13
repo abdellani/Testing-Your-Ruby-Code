@@ -5,7 +5,7 @@ require './enumerable/main.rb'
 RSpec.describe 'Enumerable' do
   # my_each
   describe '#my_each' do
-    let(:arr) { ['a', 'b', 'c'] }
+    let(:arr) { %w[a b c] }
     it 'should call the block once for each element and pass it as parameter' do
       expect { arr.my_each { |x| print x, ' -- ' } }.to output('a -- b -- c -- ').to_stdout
     end
@@ -17,7 +17,7 @@ RSpec.describe 'Enumerable' do
 
   # my_each_wth_index
   describe '#my_each_with_index' do
-    let(:arr) { ['a', 'b', 'c'] }
+    let(:arr) { %w[a b c] }
 
     it 'should call the block one for each element and pass it as parameter' do
       expect{ arr.my_each_with_index { |element,index| puts "#{index}=>#{element}" } }.to output("0=>a\n1=>b\n2=>c\n").to_stdout
@@ -34,7 +34,7 @@ RSpec.describe 'Enumerable' do
       expect(arr.my_select { |num| num.even? }).to eql([2, 4])
     end
     it 'should return all odd elements from the array' do
-      expect(arr.my_select { |num| num.odd? }).to eql([1,3,5])
+      expect(arr.my_select { |num| num.odd? }).to eql([1, 3, 5])
     end
   end
 
@@ -67,10 +67,10 @@ RSpec.describe 'Enumerable' do
       expect(arr.my_none? { |x| x > 6 }).to eql(true)
     end
     it 'should return false if the given block return true for one element at least' do
-      expect(arr.my_none? { |x| 1 == x }).to eql(false)
+      expect(arr.my_none? { |x| x == 1 }).to eql(false)
     end
   end
-  
+
   # my_count
   describe '#my_count' do
     let(:arr) { [1, 2, 4, 2] }
