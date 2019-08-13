@@ -15,6 +15,7 @@ RSpec.describe 'Enumerable' do
     end
   end
 
+  # my_each_wth_index
   describe '#my_each_with_index' do
     let(:arr) { ['a', 'b', 'c'] }
     it 'should call the block one for each element and pass it as parameter' do
@@ -22,6 +23,15 @@ RSpec.describe 'Enumerable' do
     end
   end
 
+  # my_select
+  describe '#my_select' do
+    let(:arr) { [1, 2, 3, 4, 5] }
+    it 'should return all elements of the enum for which the given block returns true' do
+      expect(arr.my_select { |num| num.even? }).to eql([2, 4])
+    end
+  end
+
+  # my_count
   describe '#my_count' do
     let(:arr) { [1, 2, 4, 2] }
     it 'should return the size of the array when called without arguments' do
