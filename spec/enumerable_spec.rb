@@ -20,7 +20,8 @@ RSpec.describe 'Enumerable' do
     let(:arr) { %w[a b c] }
 
     it 'should call the block one for each element and pass it as parameter' do
-      expect{ arr.my_each_with_index { |element,index| puts "#{index}=>#{element}" } }.to output("0=>a\n1=>b\n2=>c\n").to_stdout
+      expect { arr.my_each_with_index { |element, index| puts "#{index}=>#{element}" } }
+        .to output("0=>a\n1=>b\n2=>c\n").to_stdout
     end
     it 'should return an enumerator if no block is given' do
       expect(arr.my_each_with_index.is_a?(Enumerable)).to be(true)
@@ -31,10 +32,10 @@ RSpec.describe 'Enumerable' do
   describe '#my_select' do
     let(:arr) { [1, 2, 3, 4, 5] }
     it 'should return all even elements from the array' do
-      expect(arr.my_select { |num| num.even? }).to eql([2, 4])
+      expect(arr.my_select(&:even?)).to eql([2, 4])
     end
     it 'should return all odd elements from the array' do
-      expect(arr.my_select { |num| num.odd? }).to eql([1, 3, 5])
+      expect(arr.my_select(&:odd?)).to eql([1, 3, 5])
     end
   end
 
@@ -98,7 +99,7 @@ RSpec.describe 'Enumerable' do
     end
   end
 
-  # my_inject 
+  # my_inject
   describe '#my_inject' do
     let(:arr) { [1, 2, 3, 4] }
     it 'should return the sum of all the elements of array' do

@@ -34,7 +34,7 @@ module Enumerable
   end
 
   # my_all
-  def my_all?()
+  def my_all?
     my_each { |num| return false unless yield(num) }
     true
   end
