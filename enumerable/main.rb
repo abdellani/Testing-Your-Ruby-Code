@@ -4,6 +4,8 @@
 module Enumerable
   # my each
   def my_each
+    return self unless block_given?
+
     count = 0
     while count < length
       yield(self[count])
