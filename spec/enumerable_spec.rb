@@ -53,6 +53,17 @@ RSpec.describe 'Enumerable' do
     end
   end
 
+  # my_none?
+  describe '#my_none?' do
+    let(:arr) { [1,2,3,4,5] }
+    it 'should return true if the given block return false for all the elements' do
+      expect(arr.my_none? { |x| x > 6 }).to eql(true)
+    end
+    it 'should return false if the given block return true for one element at least' do
+      expect(arr.my_none? { |x| 1 == x }).to eql(false)
+    end
+  end
+  
   # my_count
   describe '#my_count' do
     let(:arr) { [1, 2, 4, 2] }
