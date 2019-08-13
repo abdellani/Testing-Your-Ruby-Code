@@ -91,4 +91,11 @@ RSpec.describe 'Enumerable' do
     end
   end
 
+  # my_inject 
+  describe '#my_inject' do
+    let(:arr) { [1, 2, 3, 4] }
+    it 'should return the sum of all the elements of array' do
+      expect(arr.my_inject { |sum, element| sum + element }).to eql(10)
+    end
+  end
 end
