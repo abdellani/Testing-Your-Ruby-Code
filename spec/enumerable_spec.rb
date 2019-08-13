@@ -33,12 +33,12 @@ RSpec.describe 'Enumerable' do
 
   # my_all?
   describe '#my_all?' do
-    let(:arr) { [1,2,3,4,5] }
+    let(:arr) { [1, 2, 3, 4, 5] }
     it 'should return true if the given block return true for all the elements' do
       expect(arr.my_all? { |x| x < 6 }).to eql(true)
     end
     it 'should return false if the given block return false for one element at least' do
-      expect(arr.my_all? { |x| 1 < x }).to eql(false)
+      expect(arr.my_all? { |x| x > 1 }).to eql(false)
     end
   end
 
@@ -55,7 +55,7 @@ RSpec.describe 'Enumerable' do
 
   # my_none?
   describe '#my_none?' do
-    let(:arr) { [1,2,3,4,5] }
+    let(:arr) { [1, 2, 3, 4, 5] }
     it 'should return true if the given block return false for all the elements' do
       expect(arr.my_none? { |x| x > 6 }).to eql(true)
     end
@@ -79,4 +79,16 @@ RSpec.describe 'Enumerable' do
       expect(arr.my_count { |x| x.even? }).to eql(3)
     end
   end
+
+  # my_map
+  describe '#my_count' do
+    let(:arr) { [1, 2, 3, 4] }
+    it 'should return an array where each element is multiplied by 2' do
+      expect(arr.my_map { |x| x * 2 }).to eql([2, 4, 6, 8])
+    end
+    it 'should return the specified string for each element' do
+      expect(arr.my_map { 'cat' }).to eql(%w[cat cat cat cat])
+    end
+  end
+
 end
