@@ -18,16 +18,23 @@ RSpec.describe 'Enumerable' do
   # my_each_wth_index
   describe '#my_each_with_index' do
     let(:arr) { ['a', 'b', 'c'] }
+
     it 'should call the block one for each element and pass it as parameter' do
       expect{ arr.my_each_with_index { |element,index| puts "#{index}=>#{element}" } }.to output("0=>a\n1=>b\n2=>c\n").to_stdout
+    end
+    it 'should return an enumerator if no block is given' do
+      expect(arr.my_each_with_index.is_a?(Enumerable)).to be(true)
     end
   end
 
   # my_select
   describe '#my_select' do
     let(:arr) { [1, 2, 3, 4, 5] }
-    it 'should return all elements of the enum for which the given block returns true' do
+    it 'should return all even elements from the array' do
       expect(arr.my_select { |num| num.even? }).to eql([2, 4])
+    end
+    it 'should return all odd elements from the array' do
+      expect(arr.my_select { |num| num.odd? }).to eql([1,3,5])
     end
   end
 
@@ -81,7 +88,7 @@ RSpec.describe 'Enumerable' do
   end
 
   # my_map
-  describe '#my_count' do
+  describe '#my_map' do
     let(:arr) { [1, 2, 3, 4] }
     it 'should return an array where each element is multiplied by 2' do
       expect(arr.my_map { |x| x * 2 }).to eql([2, 4, 6, 8])
@@ -96,6 +103,9 @@ RSpec.describe 'Enumerable' do
     let(:arr) { [1, 2, 3, 4] }
     it 'should return the sum of all the elements of array' do
       expect(arr.my_inject { |sum, element| sum + element }).to eql(10)
+    end
+    it 'should return the sum of all the elements of array plus the argument' do
+      expect(arr.my_inject(5) { |sum, element| sum + element }).to eql(15)
     end
   end
 end

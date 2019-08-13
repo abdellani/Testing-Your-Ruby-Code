@@ -16,6 +16,8 @@ module Enumerable
 
   # my_each_with_each
   def my_each_with_index
+    return self unless block_given?
+
     count = 0
     while count < length
       yield(self[count], count)
