@@ -6,13 +6,19 @@ RSpec.describe 'Enumerable' do
   # my_each
   describe '#my_each' do
     let(:arr) { ['a', 'b', 'c'] }
-
     it 'should call the block once for each element and pass it as parameter' do
       expect { arr.my_each { |x| print x, ' -- ' } }.to output('a -- b -- c -- ').to_stdout
     end
 
     it 'should return an enumerator if no block is given' do
       expect(arr.my_each.is_a?(Enumerable)).to be(true)
+    end
+  end
+
+  describe '#my_each_with_index' do
+    let(:arr) { ['a', 'b', 'c'] }
+    it 'should call the block one for each element and pass it as parameter' do
+      expect{ arr.my_each_with_index { |element,index| puts "#{index}=>#{element}" } }.to output("0=>a\n1=>b\n2=>c\n").to_stdout
     end
   end
 
